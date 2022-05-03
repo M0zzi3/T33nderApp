@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, redirect,  url_for, request, flash
 from models.user import Users
 from extensions import db
-from sqlalchemy import select
+
 
 
 bp = Blueprint('auth', __name__)
@@ -11,25 +11,17 @@ def login_page():
 
     if request.method == "POST":
         logg_ursName = request.form["logg_usrName"]
-        # logg_ursPawssword = request.form["logg_ursPawssword"]
-        #
-        test_user = Users.query.filter_by(name=logg_ursName).first()
-        #
-        #
-        # if test_user != None:
-        #
-        #
-        #     session['user'] = logg_ursName
-        #     session.permanent = True
-        #     return redirect(url_for('main.profile_page'))
-        #
-        # else:
-        #     flash("Users with that name doesn't exist")
 
+        found_user = Users.query.filter_by(name=logg_ursName).first()
 
-        session['user'] = logg_ursName
-        session.permanent = True
-        return redirect(url_for('main.profile_page'))
+        if found_user:
+
+            session['user'] = logg_ursName
+            session.permanent = True
+            return redirect(url_for('main.profile_page'))
+
+        else:
+            flash('Wrong user or password')
 
 
     return render_template('login.html')
