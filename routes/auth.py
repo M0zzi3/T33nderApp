@@ -11,13 +11,15 @@ def login_page():
 
     if request.method == "POST":
         logg_ursName = request.form["logg_usrName"]
+        logg_ursPassword = request.form["logg_usrPassword"]
 
         found_user = Users.query.filter_by(name=logg_ursName).first()
 
-        if found_user:
+        if found_user and found_user.password == logg_ursPassword:
 
             session['user'] = logg_ursName
             session.permanent = True
+
             return redirect(url_for('main.profile_page'))
 
         else:
@@ -58,7 +60,11 @@ def register_page():
 
 @bp.route('/logout')
 def logout():
-    last_user = session['user']
-    flash(f"You have been logged out {last_user}")
-    session.pop('user')
-    return render_template('login.html')
+
+    try:
+        last_user = session['user']
+        flash(f"You have been logged out {last_user}")
+        session.pop('user')
+    except KeyError:
+        flash(f"You haven't been logged")
+    return redirect(url_for('auth.login_page'))
