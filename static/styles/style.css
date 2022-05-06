@@ -28,26 +28,53 @@ footer{
   margin-top: 200px;
 }
 
-.logo{
+.nav_logo{
   grid-column: 1;
   grid-row: 1;
   padding-left: 50px;
 }
 
-.user_profpicture{
+.nav_profpicture{
   grid-column: 4;
   grid-row: 1;
 }
 
-.user_messages{
+.nav_messages{
   grid-column: 3  ;
   grid-row:1;
 }
 
-.logout_button{
+.nav_logout_button{
   grid-column: 5  ;
   grid-row:1;
 }
+
+.profile_info_content{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 20px;
+}
+
+
+
+.user_profile_picture{
+  height: 250px;
+  width: 250px;
+  background-color: green;
+  border-radius: 125px;
+  grid-column: 2;
+  grid-row: 1;
+  margin: 20px
+}
+
+.user_profile_bio{
+  grid-column: 1/span 2;
+  grid-row: 2 ;
+}
+
+
+
 
 
 
