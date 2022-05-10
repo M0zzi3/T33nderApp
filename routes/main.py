@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from models.user import Users
 from extensions import db
 
@@ -22,3 +22,32 @@ def profile_page():
         return render_template('profie.html', user=found_user)
     else:
         return redirect('/login')
+
+
+@bp.route('/edit', methods=["POST","GET"])
+def edit_page():
+    if "user" in session:
+        found_user = Users.query.filter_by(name=session['user']).first()
+
+        if request.method == "POST":
+            new_usrName = request.form["new_usrName"]
+            new_usrBio = request.form["new_usrBio"]
+
+            if new_usrName != '' and new_usrBio != '':
+
+                found_user.name = new_usrName
+                # found_user.profbio = new_usrBio
+                db.session.commit()
+                session['user'] = new_usrName
+
+                flash("Your changes has been applied")
+                return (redirect(url_for('main.profile_page')))
+
+            else:
+                flash("Fill all require inputs")
+
+
+        return render_template('edit.html', user = found_user)
+
+    else:
+        return (redirect(url_for('auth.login_page')))

@@ -19,9 +19,17 @@
 
     <div class="profile_info_content">
         <img class="user_profile_picture" src="static/images/{{ user.profpic }}.jpg">
+        <button class="user_profile_button" onclick="location.href = '/edit'">Edit Profile</button>
 
-        <div class="user_profile_tags">asd  asd fgh jhgf gj  asd  gdf hd jhg e 5rt xvc  ad hbd aef  zxvdhnde w fwes gw bh tfy ui r iu  rtfzer  ini vct x  nuhvf trv yuniu jgtr śrh uty dt4gu hd 65rug5 4fw tyf tfsr uf 67fgtyf dtregjb </div>
-        <div class="user_profile_bio">Si on kolbacks detourne fenetres fanfares qu. Rang vlan bien mur ils elle vous leur. Bouleaux regiment du or exploits branches au ai falaises dimanche. Tu de te la maintenant gouverneur frissonner condamnait. Sol couleur une grosses aurions but cavites ame conclue conseil. Perimetre neanmoins cesserent et je eu succedent. Aimons lorsqu nos toi feu plonge. Revele pendus en gronde hetres cahots autres sa. Interdit passions francine iii car courages fervente remparts. Devant courts ras espoir par. </div>
+        <div class="user_profile_tags">
+            <ul class="tagslist">
+                {% for tag in user.proftags.split(',') %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="user_profile_bio">{{ user.profbio }} </div>
 
     </div>
 

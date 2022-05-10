@@ -51,9 +51,12 @@ footer{
 
 .profile_info_content{
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
+
+  grid-template-columns: 1fr min-content ;
+  grid-template-rows: auto  1fr auto;
   grid-gap: 20px;
+
+
 }
 
 
@@ -68,10 +71,29 @@ footer{
   margin: 20px
 }
 
+.user_profile_button{
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
 .user_profile_bio{
   grid-column: 1/span 2;
-  grid-row: 2 ;
+  grid-row: 3 ;
 }
+
+.tagslist li{
+  display: inline;
+}
+
+
+.edit_input_bio{
+  width: 300px;
+}
+
+
+
+
 
 
 

@@ -20,6 +20,8 @@ def login_page():
             session['user'] = logg_ursName
             session.permanent = True
 
+            print(f'User loggged in: {logg_ursName} : {logg_ursPassword}')
+
             return redirect(url_for('main.profile_page'))
 
         else:
@@ -36,7 +38,7 @@ def register_page():
         new_usrName = request.form["new_usrName"]
         new_usrPassword = request.form["new_usrPassword"]
 
-        print(new_usrName, new_usrPassword)
+        print(f'New register user: {new_usrName} : {new_usrPassword}')
 
         found_user = Users.query.filter_by(name=new_usrName).first()
 

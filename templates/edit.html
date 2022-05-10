@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    <form action="#" method="post">
+        <p>Edit yout account</p>
+        <p><input type="text" name="new_usrName", value={{ user.name }}></p>
+        <p><input class="edit_input_bio" type="text" name="new_usrBio", value={{ user.profbio }}></p>
+
+        <p><input type="submit" value="submit"></p>
+    </form>
+
+{% endblock %}
