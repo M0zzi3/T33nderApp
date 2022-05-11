@@ -15,7 +15,7 @@ body{
 
 nav{
   display: grid;
-  grid-template-columns: auto 3fr 1fr 1fr auto+2px;
+  grid-template-columns: auto 3fr 1fr 1fr 1fr auto+2px;
   grid-gap: 10px;
 
 
@@ -43,6 +43,10 @@ footer{
   grid-column: 3  ;
   grid-row:1;
 }
+.nav_profile_button{
+
+}
+
 
 .nav_logout_button{
   grid-column: 5  ;
@@ -58,7 +62,6 @@ footer{
 
 
 }
-
 
 
 .user_profile_picture{
@@ -88,7 +91,7 @@ footer{
 
 
 .edit_input_bio{
-  width: 300px;
+  width: auto;
 }
 
 

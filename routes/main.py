@@ -32,19 +32,25 @@ def edit_page():
         if request.method == "POST":
             new_usrName = request.form["new_usrName"]
             new_usrBio = request.form["new_usrBio"]
+            print(type(found_user.profbio))
 
-            if new_usrName != '' and new_usrBio != '':
-
+            if new_usrName != '':
                 found_user.name = new_usrName
-                # found_user.profbio = new_usrBio
-                db.session.commit()
                 session['user'] = new_usrName
 
+                if new_usrBio != '':
+                    found_user.profbio = new_usrBio
+
+                db.session.commit()
                 flash("Your changes has been applied")
                 return (redirect(url_for('main.profile_page')))
 
             else:
                 flash("Fill all require inputs")
+
+
+
+
 
 
         return render_template('edit.html', user = found_user)
