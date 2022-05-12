@@ -12,6 +12,7 @@ def home_page():
         return render_template("home.html")
     else:
         return redirect('/login')
+        print('red to login')
 
 
 @bp.route('/profile')
@@ -19,9 +20,26 @@ def profile_page():
     if "user" in session:
         found_user = Users.query.filter_by(name=session['user']).first()
 
-        return render_template('profie.html', user=found_user)
+        return render_template('profie.html', user=found_user, owner=True)
     else:
         return redirect('/login')
+
+@bp.route('/<username>')
+def show_user(username):
+    if "user" in session:
+        found_user = Users.query.filter_by(name=username).first()
+        if found_user:
+            if found_user.name == session['user']:
+                return redirect(url_for('main.profile_page'))
+            else:
+                return render_template('profie.html', user=found_user, owner=False)
+        else:
+            flash('This user does not exist')
+            return redirect(url_for('main.home_page'))
+
+    else:
+        return redirect(url_for('auth.login_page'))
+
 
 
 @bp.route('/edit', methods=["POST","GET"])

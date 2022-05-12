@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>User Page</title>
+<title>{{ user.name }} Page</title>
 {% endblock %}
 
 
@@ -14,19 +14,25 @@
         {% endif %}
     {% endwith %}
 
-
-    <h1>Hello {{ user.name }} </h1>
-
+    {% if owner %}
+        <h1>Hello {{ user.name }} </h1>
+    {% else %}
+        <h1>This is {{ user.name }}'s profile</h1>
+    {% endif %}
     <div class="profile_info_content">
         <img class="user_profile_picture" src="static/images/{{ user.profpic }}.jpg">
-        <button class="user_profile_button" onclick="location.href = '/edit'">Edit Profile</button>
-
+        {% if owner %}
+            <button class="user_profile_button" onclick="location.href = '/edit'">Edit Profile</button>
+        {% endif %}
         <div class="user_profile_tags">
             <ul class="tagslist">
                 {% for tag in user.proftags.split(',') %}
                     <li>{{ tag }}</li>
                 {% endfor %}
             </ul>
+        </div>
+        <div class="user_profile_friends">
+            this is friends list
 
         </div>
         <div class="user_profile_bio">{{ user.profbio }} </div>

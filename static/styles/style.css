@@ -56,7 +56,7 @@ footer{
 .profile_info_content{
   display: grid;
 
-  grid-template-columns: 1fr min-content ;
+  grid-template-columns: 20% 1fr  min-content ;
   grid-template-rows: auto  1fr auto;
   grid-gap: 20px;
 
@@ -69,20 +69,33 @@ footer{
   width: 250px;
   background-color: green;
   border-radius: 125px;
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 1;
   margin: 20px
 }
 
 .user_profile_button{
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 2;
 }
 
 
 .user_profile_bio{
-  grid-column: 1/span 2;
+  grid-column: 2/span 2;
   grid-row: 3 ;
+}
+
+.user_profile_tags{
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.user_profile_friends{
+  grid-column: 1;
+  grid-row: 1/span 3;
+
+
+  background-color: yellow;
 }
 
 .tagslist li{
