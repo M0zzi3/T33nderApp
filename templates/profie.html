@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}
+{% block head %}
 <title>{{ user.name }} Page</title>
 {% endblock %}
 
@@ -32,7 +32,12 @@
             </ul>
         </div>
         <div class="user_profile_friends">
-            this is friends list
+            <ul>
+                {% for friend in  user.friends.split(',') %}
+                    <li>{{ friend }}</li>
+                {% endfor %}
+
+            </ul>
 
         </div>
         <div class="user_profile_bio">{{ user.profbio }} </div>

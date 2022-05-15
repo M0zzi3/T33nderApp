@@ -17,10 +17,10 @@ class Users(db.Model):
         self.profpic = 'default_profpic'
         self.proftags = ' '
         self.profbio = f'Hello my name is {self.name}! Whats up?'
-        self.friends = 'maks'
+        self.friends = 'nobody'
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<User: {self.name}>'
 
 
 

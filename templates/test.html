@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Test</title>
+    <script src="/static/scripts/jstest.js"></script>
+{#    <style>#}
+{#        .hidden_message{#}
+{#            display: none;#}
+{#        }#}
+{##}
+{#    </style>#}
+{% endblock %}
+
+
+{% block content %}
+    <button type="button" onclick="testfunc('ben')">Click here!</button>
+    <p>{{ user.name }}</p>
+{% endblock %}

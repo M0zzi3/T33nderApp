@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from models.user import Users
+from models.tags import Tags
 from extensions import db
 
 bp = Blueprint('main', __name__)
@@ -50,14 +51,17 @@ def edit_page():
         if request.method == "POST":
             new_usrName = request.form["new_usrName"]
             new_usrBio = request.form["new_usrBio"]
-            print(type(found_user.profbio))
+            new_tag = request.form["new_tag"]
 
             if new_usrName != '':
                 found_user.name = new_usrName
                 session['user'] = new_usrName
 
-                if new_usrBio != '':
-                    found_user.profbio = new_usrBio
+                found_user.profbio = new_usrBio
+
+                if new_tag != '':
+                    tag = Tags()
+
 
                 db.session.commit()
                 flash("Your changes has been applied")
@@ -68,10 +72,12 @@ def edit_page():
 
 
 
-
-
-
         return render_template('edit.html', user = found_user)
 
     else:
         return (redirect(url_for('auth.login_page')))
+
+@bp.route('/test')
+def test_page():
+    found_user = Users.querry.filter_by(name=session['user']).first()
+    return render_template('test.html', user=found_user)
