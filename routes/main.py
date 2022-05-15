@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash
 from models.user import Users
+from models.tags import Tags
 from extensions import db
 
 bp = Blueprint('main', __name__)
@@ -47,17 +48,45 @@ def edit_page():
     if "user" in session:
         found_user = Users.query.filter_by(name=session['user']).first()
 
+        tags_dictionary = {}
+        for tag in Tags.query.all():
+            if tag.category not in tags_dictionary.keys():
+                tags_dictionary[tag.category] = []
+            tags_dictionary[tag.category].append(tag.content)
+
+
+
+
+
+        print(tags_dictionary)
+
+        tags = tags_dictionary
+
+
         if request.method == "POST":
             new_usrName = request.form["new_usrName"]
             new_usrBio = request.form["new_usrBio"]
-            print(type(found_user.profbio))
+            new_tagConetnt = request.form["new_tagContent"]
+            new_tagCategory = request.form["new_tagCategory"]
 
-            if new_usrName != '':
+            if new_usrName != '' and new_usrBio != '':
                 found_user.name = new_usrName
                 session['user'] = new_usrName
 
-                if new_usrBio != '':
-                    found_user.profbio = new_usrBio
+                found_user.profbio = new_usrBio
+
+
+
+                if new_tagConetnt != '' and new_tagCategory !='':
+                    addedtag = Tags(new_tagConetnt,new_tagCategory)
+                    db.session.add(addedtag)
+
+                    if new_tagConetnt not in found_user.proftags.split('!'):
+                        found_user.proftags = found_user.proftags + f"!{new_tagConetnt}"
+
+
+
+
 
                 db.session.commit()
                 flash("Your changes has been applied")
@@ -68,10 +97,12 @@ def edit_page():
 
 
 
-
-
-
-        return render_template('edit.html', user = found_user)
+        return render_template('edit.html', user = found_user, tags=tags)
 
     else:
         return (redirect(url_for('auth.login_page')))
+
+@bp.route('/test')
+def test_page():
+    found_user = Users.querry.filter_by(name=session['user']).first()
+    return render_template('test.html', user=found_user)

@@ -13,14 +13,37 @@ body{
   background-color: #ced4da;
 }
 
+
+/*nav*/
 nav{
-  display: grid;
-  grid-template-columns: auto 3fr 1fr 1fr 1fr auto+2px;
-  grid-gap: 10px;
-
-
   background-color: #ff0000;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: auto 1fr auto min-content;
 }
+.nav_swipe_button{
+  grid-column: 1;
+  margin-left: 30px;
+}
+.nav_profile_button{
+  grid-column: 3;
+}
+.nav_logout_button{
+  grid-column: 4;
+  margin-right: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 footer{
   background-color: aqua;
@@ -28,30 +51,7 @@ footer{
   margin-top: 200px;
 }
 
-.nav_logo{
-  grid-column: 1;
-  grid-row: 1;
-  padding-left: 50px;
-}
 
-.nav_profpicture{
-  grid-column: 4;
-  grid-row: 1;
-}
-
-.nav_messages{
-  grid-column: 3  ;
-  grid-row:1;
-}
-.nav_profile_button{
-
-}
-
-
-.nav_logout_button{
-  grid-column: 5  ;
-  grid-row:1;
-}
 
 .profile_info_content{
   display: grid;
@@ -102,9 +102,17 @@ footer{
   display: inline;
 }
 
+.in{
+  background-color: #4CAF50;
+}
+
+.out{
+  background-color: #f44336;
+}
+
 
 .edit_input_bio{
-  width: auto;
+
 }
 
 

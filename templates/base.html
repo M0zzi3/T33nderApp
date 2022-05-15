@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block title %}
+    {% block head %}
 
     {% endblock %}
+
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
 </head>
 <body>
     <div class="content">
         <nav>
-            <div class="nav_logo">this is logo</div>
-{#            <div class="nav_profpicture">this is profile picture</div>#}
-{#            <buttton class="nav_profilepicture" onclick="location.href = '/profile'">Profile</button>#}
-            <div class="nav_messages">this is message</div>
+            <button class="nav_swipe_button" onclick="location.href = '/'">Swipe</button>
+            <button class="nav_profile_button" onclick="location.href = '/profile'">Profile</button>
+
             <button class="nav_logout_button" onclick="location.href = '/logout'">Logout</button>
         </nav>
         {% block content %}

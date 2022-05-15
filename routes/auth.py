@@ -53,7 +53,7 @@ def register_page():
 
             session['user'] = new_usrName
 
-            return redirect(url_for('main.profile_page'))
+            return redirect(url_for('main.edit_page'))
 
 
     return render_template('register.html')
