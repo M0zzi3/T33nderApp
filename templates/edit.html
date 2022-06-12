@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <title>Edit</title>
-    <script src="/static/scripts/edit_profile.js"></script>
+{% block title %}
+<title>Edit</title>
 {% endblock %}
 
 
@@ -25,48 +24,13 @@
             </li>
             <li>
                 <p>New Bio:</p>
-                <input class="edit_input_bio" type="text" name="new_usrBio" value="{{ user.profbio }}" size="150">
+                <input class="edit_input_bio" type="text" name="new_usrBio" value="{{ user.profbio }}">
             </li>
 
         </ul>
 
-        <div class="tagslist">
-            <p>---</p>
-            {% for tag_category in tags.keys() %}
-                <p>{{ tag_category }} : </p>
-                <ul>
-                {% for t in tags[tag_category] %}
-                    {% if t in user.proftags.split('!') %}
-                        <li> <button class="tag in">{{ t }}</button></li>
-                    {% else %}
-                        <li> <button class="tag out" class="out">{{ t }}</button></li>
-                    {% endif %}
-                {% endfor %}
-                <p>---</p>
-                </ul>
-            {% endfor %}
-
-
-
-        </div>
-
-
-        <input type="text" placeholder="enter new tag content" name="new_tagContent"><select name="new_tagCategory" >
-            <option>TV</option>
-            <option>Music</option>
-            <option>Sport</option>
-            <option>Games</option>
-            <option>Life style</option>
-            <option>Books</option>
-        </select>
-
-
-
-
 
         <p><input type="submit" value="submit"></p>
     </form>
-
-
 
 {% endblock %}
